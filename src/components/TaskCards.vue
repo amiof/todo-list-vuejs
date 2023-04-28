@@ -14,7 +14,7 @@
             <span class="material-symbols-outlined edit">
                 edit
             </span>
-            <span class="material-symbols-outlined delete">
+            <span class="material-symbols-outlined delete" @click="removeHandler">
                 delete
             </span>
         </div>
@@ -46,6 +46,11 @@ export default {
                 .catch(error => console.log(error))
 
         },
+        removeHandler(){
+            fetch(this.url,{method:"DELETE"})
+                .then(()=>this.$emit("remove",this.task.id))
+                .catch(error=>console.log(error))
+        }
     },
 }
 </script>

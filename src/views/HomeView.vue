@@ -2,7 +2,7 @@
   <div class="home">
 
     <div v-for="post in posts">
-      <TaskCards  :key="post.id" :task="post"  @RefreshDone="refreshData"></TaskCards>
+      <TaskCards :key="post.id" :task="post" @RefreshDone="refreshData" @remove="removeHandler"></TaskCards>
     </div>
   </div>
 </template>
@@ -16,16 +16,20 @@ export default {
   data() {
     return {
       url: "http://localhost:3000/posts",
-      posts:[]
+      posts: []
 
     }
   },
   methods: {
-    refreshData(id){
-      let findTask=this.posts.find(item =>  item.id == id )
+    refreshData(id) {
+      let findTask = this.posts.find(item => item.id == id)
       // console.log(findTask)
       findTask.complated = !findTask.complated
       // console.log(findTask.complated)
+    },
+    removeHandler(id) {
+      const filteredData = this.posts.filter(item => item.id !== id)
+      this.posts = filteredData
     }
   },
   mounted() {
