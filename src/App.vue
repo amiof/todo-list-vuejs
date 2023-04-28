@@ -3,10 +3,17 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin :0px;
+  padding: 0px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
