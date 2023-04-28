@@ -24,6 +24,7 @@
 <script>
 
 export default {
+    name:"TaskCards",
     props: ["task"],
     data() {
         return {
@@ -58,13 +59,15 @@ k
 <style  scoped>
 .card {
     padding: 25px;
-    background-color: #e7e8e5;
+    background-color: #dedede;
     /* border: 1px solid black; */
     border-radius: 10px;
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
     border-left: 4px solid red;
+    box-shadow: 5px 5px 15px #535452;
+    
 
 }
 
