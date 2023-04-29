@@ -1,6 +1,6 @@
 <template>
-    <div class="card" :class="{complate:task.complated}">
-        <div @click="showDetails" class="task" >
+    <div class="card" :class="{ complate: task.complated }">
+        <div @click="showDetails" class="task">
             {{ task.title }}
             <h3 class="h3" v-if="details">detailes</h3>
             <p v-if="details">{{ task.body }}</p>
@@ -8,12 +8,14 @@
         </div>
         <div class="icons">
 
-            <span class="material-symbols-outlined done" @click="changeComplate" >
+            <span class="material-symbols-outlined done" @click="changeComplate">
                 done
             </span>
-            <span class="material-symbols-outlined edit">
-                edit
-            </span>
+            <RouterLink to="./EditTask">
+                <span class="material-symbols-outlined edit">
+                    edit
+                </span>
+            </RouterLink>
             <span class="material-symbols-outlined delete" @click="removeHandler">
                 delete
             </span>
@@ -24,6 +26,7 @@
 <script>
 
 export default {
+    
     name:"TaskCards",
     props: ["task"],
     data() {
@@ -67,7 +70,7 @@ k
     justify-content: space-between;
     border-left: 4px solid red;
     box-shadow: 5px 5px 15px #535452;
-    
+
 
 }
 
