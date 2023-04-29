@@ -2,7 +2,7 @@
   <div>
     <div class="items">
       <RouterLink to="/addTask">
-        <span class="material-symbols-outlined">
+        <span class="material-symbols-outlined addItem">
           add_circle
         </span>
       </RouterLink>
@@ -30,6 +30,11 @@ export default {
   border-radius: 10px;
   box-shadow: 2px 2px 5px #535452;
   animation: 3s ease-in all;
+}
+
+.addItem {
+  color: red;
+  font-size: 2.3rem;
 }
 
 .buttons:hover {
