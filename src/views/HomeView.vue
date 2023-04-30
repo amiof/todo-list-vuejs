@@ -13,7 +13,6 @@
 import TaskCards from "../components/TaskCards.vue"
 import FilterTask from "../components/FilterTaks.vue"
 // import addTask from "../components/AddTask.vue"
-import addTask from "../components/AddTask.vue"
 export default {
   name: 'HomeView',
   components: { TaskCards, FilterTask },

@@ -22,9 +22,10 @@ const routes = [
 
   },
   {
-    path: "/editTask",
+    path: "/editTask/:id",
     name: "editTask",
-    component :()=>import("../components/EditTask.vue")
+    component :()=>import("../components/EditTask.vue"),
+    props:true
 
   },
 ]

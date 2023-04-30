@@ -3,20 +3,50 @@
     <h1>edit Task</h1>
     <div class="inputData">
       <label name="input">task: </label>
-      <input type="text" />
+      <input type="text" v-model="taskTitle" />
       <div class="textArea">
         <label name="details">details:</label>
-        <textarea></textarea>
+        <textarea v-model="taskDetails"></textarea>
       </div>
     </div>
-    <button>edit task</button>
+    <button @click="submitHandler">edit task</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "AddTask"
-
+  name: "EditTask",
+  props: ["id"],
+  data() {
+    return {
+      taskTitle: "",
+      taskDetails: "",
+      url: "http://localhost:3000/posts/" + this.id,
+    }
+  },
+  methods: {
+    submitHandler(){
+      const editedData={
+        title:this.taskTitle,
+        body:this.taskDetails
+      }
+      fetch(this.url,{
+        method:"PATCH",
+        headers:{"content-type":"application/json"},
+        body:JSON.stringify(editedData) 
+      }).then(()=>this.$router.push("/"))
+      .catch(error=>console.log(error.message))
+    }
+  },
+  mounted() {
+    fetch(this.url).then(res => res.json())
+    // .then(data=>console.log(data))
+      .then(data => {
+        this.taskTitle = data.title,
+        this.taskDetails = data.body
+      })
+    .catch(error=>console.log(error))
+  },
 }
 </script>
 

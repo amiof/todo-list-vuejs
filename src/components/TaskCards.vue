@@ -11,12 +11,12 @@
       <span class="material-symbols-outlined done" @click="changeComplate">
         done
       </span>
-      <RouterLink to="./EditTask">
+      <RouterLink :to="{ name:'editTask', params: { id: task.id } }">
         <span class="material-symbols-outlined edit">
           edit
         </span>
       </RouterLink>
-      <span class="material-symbols-outlined delete" @click="removeHandler">
+      <span class="material-symbols-outlined delete" @click=" removeHandler ">
         delete
       </span>
     </div>
