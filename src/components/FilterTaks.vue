@@ -28,7 +28,10 @@ export default {
   margin: 5px;
   width: 100px;
   border-radius: 10px;
+  border:none;
+  outline:none;
   box-shadow: 2px 2px 5px #535452;
+
   animation: 3s ease-in all;
 }
 
@@ -38,8 +41,8 @@ export default {
 }
 
 .buttons:hover {
-  background-color: #f56c14;
-  color: white;
+  background-color: greenyellow;
+  color: red;
 }
 
 .items {
