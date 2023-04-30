@@ -1,6 +1,6 @@
 <template>
-  <div class="home" >
-    <FilterTask></FilterTask>
+  <div class="home">
+    <FilterTask @filter="filterHandler"></FilterTask>
     <div v-for="post in posts">
       <TaskCards :key="post.id" :task="post" @RefreshDone="refreshData" @remove="removeHandler"></TaskCards>
     </div>
@@ -19,7 +19,8 @@ export default {
   data() {
     return {
       url: "http://localhost:3000/posts",
-      posts: []
+      posts: [],
+      constPosts: []
 
     }
   },
@@ -34,13 +35,34 @@ export default {
       const filteredData = this.posts.filter(item => item.id !== id)
       this.posts = filteredData
     },
+    filterHandler(value) {
+      switch (value) {
+        case "all":
+          fetch(this.url)
+            .then(res => res.json())
+            .then(data => { this.posts = data, this.constPosts = data })
+            .catch(error => console.log(error))
+          break;
+        case "complated":
+          const ComplatedPost = this.constPosts.filter(item => item.complated == true)
+          this.posts = ComplatedPost
+          break;
+        case "uncomplated":
+          const unComplatedPost = this.constPosts.filter(item => item.complated == false)
+          this.posts = unComplatedPost
+          break
+        default:
+          console.log("nothing")
+          break;
+      }
+    }
 
 
   },
   mounted() {
     fetch(this.url)
       .then(res => res.json())
-      .then(data => this.posts = data)
+      .then(data => { this.posts = data, this.constPosts = data })
       .catch(error => console.log(error))
 
   },

@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div>
     <div class="items">
       <RouterLink to="/addTask">
@@ -7,9 +7,9 @@
         </span>
       </RouterLink>
       <div>
-        <button class="buttons">complated</button>
-        <button class="buttons">uncomplated</button>
-        <button class="buttons">all</button>
+        <button class="buttons" @click="filterHandler('complated')">complated</button>
+        <button class="buttons" @click="filterHandler('uncomplated')">uncomplated</button>
+        <button class="buttons" @click="filterHandler('all')">all</button>
       </div>
     </div>
   </div>
@@ -19,6 +19,11 @@
 export default {
   name: "FilterTaks",
 
+  methods: {
+    filterHandler(value) {
+      this.$emit("filter",value)
+    }
+  }
 }
 </script>
 
@@ -28,8 +33,8 @@ export default {
   margin: 5px;
   width: 100px;
   border-radius: 10px;
-  border:none;
-  outline:none;
+  border: none;
+  outline: none;
   box-shadow: 2px 2px 5px #535452;
 
   animation: 3s ease-in all;
