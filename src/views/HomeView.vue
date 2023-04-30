@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" >
     <FilterTask></FilterTask>
     <div v-for="post in posts">
       <TaskCards :key="post.id" :task="post" @RefreshDone="refreshData" @remove="removeHandler"></TaskCards>
@@ -13,6 +13,7 @@
 import TaskCards from "../components/TaskCards.vue"
 import FilterTask from "../components/FilterTaks.vue"
 // import addTask from "../components/AddTask.vue"
+import addTask from "../components/AddTask.vue"
 export default {
   name: 'HomeView',
   components: { TaskCards, FilterTask },
@@ -33,7 +34,9 @@ export default {
     removeHandler(id) {
       const filteredData = this.posts.filter(item => item.id !== id)
       this.posts = filteredData
-    }
+    },
+
+
   },
   mounted() {
     fetch(this.url)

@@ -3,19 +3,45 @@
     <h1>add Task</h1>
     <div class="inputData">
       <label name="input">task: </label>
-      <input type="text" />
+      <input type="text" v-model="taskTitle" />
       <div class="textArea">
         <label name="details">details:</label>
-        <textarea></textarea>
+        <textarea v-model="taskDetails"></textarea>
       </div>
     </div>
-    <button>submit</button>
+    <button @click="submitHandler">submit</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "AddTask"
+  name: "AddTask",
+  data() {
+    return {
+      taskTitle: "",
+      taskDetails: "",
+
+      url: "http://localhost:3000/posts",
+    }
+  },
+  methods: {
+    submitHandler() {
+      const task = {
+        title: this.taskTitle,
+        body: this.taskDetails,
+        complated: false
+      }
+      // console.log(task)
+      fetch(this.url, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(task),
+      })
+        .then(()=>this.$router.push("/"))
+        .catch(error => console.log(error))
+
+    }
+  },
 
 }
 </script>
